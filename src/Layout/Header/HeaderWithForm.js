@@ -9,7 +9,7 @@ export const  HeaderFilterForm= () => {
     <>
       <div className="row top-header">
         <div className="col-12 col-md-2">
-          <button className="btn-list btn"><img src={ListIcon} alt="List Icon" /> List</button>
+          <button className="btn-list btn"><img src={ListIcon} alt="List Icon" /> Tasks</button>
         </div>
         <div className="col-12 col-md-10">
           <div className="row ">

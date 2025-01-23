@@ -8,7 +8,7 @@ export const CardWrapper = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/Data.json"); // Fetching from the local JSON file
+        const response = await fetch("/Data.json");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -23,13 +23,11 @@ export const CardWrapper = () => {
   }, []);
 
   const handleDragEnd = (event) => {
-    // Remove the class after drag ends
     event.currentTarget.classList.remove("dragging");
   };
 
   const handleDragStart = (event, cardId) => {
     event.dataTransfer.setData("cardId", cardId);
-    // Add a class to make the drag element visible
     event.currentTarget.classList.add("dragging");
   };
 
@@ -45,6 +43,10 @@ export const CardWrapper = () => {
 
   const allowDrop = (event) => {
     event.preventDefault();
+  };
+
+  const handleDelete = (cardId) => {
+    setTaskData((prevData) => prevData.filter((card) => card.id !== cardId));
   };
 
   const getCardsByStatus = (status) =>
@@ -69,7 +71,7 @@ export const CardWrapper = () => {
               {status}
               <span>({cards.length})</span>
             </h2>
-            {getCardsByStatus(status).map((card) => (
+            {cards.map((card) => (
               <CardComponent
                 key={card.id}
                 id={card.id}
@@ -78,6 +80,7 @@ export const CardWrapper = () => {
                 date={card.date}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
+                onDelete={handleDelete} // Pass the delete handler
               />
             ))}
           </div>

@@ -31,10 +31,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import CardIcon from "../../Paper.png";
-
-const CardComponent = ({ id, status, title, date, onDragStart }) => {
+import trash from "../../../src/trash-solid.svg"
+const CardComponent = ({ id, status, title, date, onDragStart, onDelete }) => {
   const navigate = useNavigate();
-  let dragImage; // Store the custom drag image element
+  let dragImage;
 
   const handleCardClick = () => {
     navigate(`/card-details/${id}`);
@@ -43,17 +43,15 @@ const CardComponent = ({ id, status, title, date, onDragStart }) => {
   const handleDragStart = (event) => {
     onDragStart(event, id);
 
-    // Create a custom drag image
     dragImage = event.currentTarget.cloneNode(true);
     dragImage.style.position = "absolute";
     dragImage.style.top = "-1000px";
     dragImage.style.left = "-1000px";
     dragImage.style.opacity = "1";
     dragImage.style.backgroundColor = "white";
-   
+
     document.body.appendChild(dragImage);
 
-    // Use the custom drag image
     event.dataTransfer.setDragImage(dragImage, 0, 0);
   };
 
@@ -64,16 +62,29 @@ const CardComponent = ({ id, status, title, date, onDragStart }) => {
     }
   };
 
+  const handleDelete = () => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this card?"
+    );
+    if (isConfirmed) {
+      onDelete(id); // Call the onDelete prop with the card ID
+    }
+  };
+
   return (
     <div
       className="card p-24"
       id={`card-${id}`}
-      // onClick={handleCardClick}
       draggable
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <span className="status-heading">{status}</span>
+      <div className="card-st-head">
+        <span className="status-heading">{status}</span>
+        <button className="dlt-btn" onClick={handleDelete}>
+          <img src={trash} alt="" />
+        </button>
+      </div>
       <h5 className="heading-title">
         <img src={CardIcon} alt="Card Icon" /> {title}
       </h5>

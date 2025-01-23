@@ -217,7 +217,7 @@ export const CreateTask = () => {
           <div className="modal-content">
             <h5 className="modal-title">Task Created Successfully!</h5>
             <p>Your task has been added to the list.</p>
-            <button className="btn btn-primary" onClick={() => navigate("/")}>
+            <button className="btn btn-primary" onClick={() => navigate("/task-board")}>
               Go to task list
             </button>
           </div>
@@ -227,13 +227,6 @@ export const CreateTask = () => {
           <form className="create-task-form" onSubmit={handleSubmit}>
             <div className="form-header">
               <h4 className="mb-4 form-heading">Create Task</h4>
-              <button
-                type="button"
-                className="close-button"
-                onClick={() => navigate("/")}
-              >
-                &times;
-              </button>
             </div>
 
             <div className="row">
@@ -269,8 +262,6 @@ export const CreateTask = () => {
                   <option value="In Progress">In Progress</option>
                   <option value="Todo">Todo</option>
                   <option value="Completed">Completed</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Under Review">Under Review</option>
                 </select>
               </div>
               <div className="col-12 col-md-6 mb-3">
@@ -303,9 +294,17 @@ export const CreateTask = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-secondary px-4">
+            <button type="submit" className="btn btn-secondary px-4 me-3">
               Submit
             </button>
+            <button
+                type="button"
+                className="btn btn-primary px-4"
+                onClick={() => navigate("/task-board")}
+              >
+                Close
+              </button>
+         
           </form>
         </>
       )}
