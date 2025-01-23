@@ -70,3 +70,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
+### Components Description
+
+Login.js for login component & it's value is printing in console
+TaskCard.js for Card in the task board
+CreateTask.js for creating new task
+CardWrapper.js for task board
